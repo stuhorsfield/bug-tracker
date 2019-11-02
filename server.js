@@ -3,6 +3,8 @@ const mongoose =    require('mongoose')
 const bodyParser =  require('body-parser')
 
 
+const tasks = require('./routes/api/tasks')
+
 const app = express();
 
 // Middleware
@@ -17,6 +19,16 @@ const db = require('./config/keys').mongoURI
 mongoose.connect(db)
     .then( () => console.log("connected"))
     .catch(console.log)
+
+
+// Routes
+app.use('/api/tasks', tasks)
+
+
+
+
+
+
 
 const port = process.env.port || "5000"
 
