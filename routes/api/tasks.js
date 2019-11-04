@@ -20,8 +20,6 @@ router.get('/', (req, res) => {
 // @access  Public
 router.post('/', (req, res) => {
 
-    console.log(req.body)
-
     const newTask = new Task({
         title: req.body.title
     });
