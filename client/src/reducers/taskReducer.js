@@ -1,21 +1,23 @@
-import { GET_TASKS, ADD_TASK, DELETE_TASK } from "../actions/types";
+import {
+  GET_TASKS,
+  ADD_TASK,
+  DELETE_TASK,
+  TASKS_LOADING
+} from "../actions/types";
 import uuid from "uuid";
 
 const initialState = {
-  tasks: [
-    { id: uuid(), title: "test task" },
-    { id: uuid(), title: "test task 2" },
-    { id: uuid(), title: "test task 3" },
-    { id: uuid(), title: "test task 4" },
-    { id: uuid(), title: "task again" }
-  ]
+  tasks: [],
+  loading: false
 };
 
 const taskReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_TASKS:
       return {
-        ...state
+        ...state,
+        tasks: action.payload,
+        loading: false
       };
     case ADD_TASK:
       return {
@@ -26,6 +28,11 @@ const taskReducer = (state = initialState, action) => {
       return {
         ...state,
         tasks: [...state.tasks.filter(task => task.id !== action.payload)]
+      };
+    case TASKS_LOADING:
+      return {
+        ...state,
+        loading: true
       };
     default:
       return state;

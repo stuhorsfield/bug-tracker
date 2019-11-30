@@ -27,37 +27,25 @@ class TaskList extends Component {
     const { tasks } = this.props.task;
 
     return (
-      <Container>
-        <Button
-          color={"dark"}
-          className={"mb-3"}
-          onClick={() => {
-            const title = prompt("Enter title of task");
-            if (title) this.handleAddTask(title);
-          }}
-        >
-          Add Task
-        </Button>
-        <ListGroup>
-          <TransitionGroup className="task-list">
-            {tasks.map(({ id, title }) => (
-              <CSSTransition key={id} timeout={500} classNames={"fade"}>
-                <ListGroupItem>
-                  {title}
-                  <Button
-                    className={"remove-btn"}
-                    color={"danger"}
-                    size={"sm"}
-                    onClick={this.handleDelete(id)}
-                  >
-                    Remove
-                  </Button>
-                </ListGroupItem>
-              </CSSTransition>
-            ))}
-          </TransitionGroup>
-        </ListGroup>
-      </Container>
+      <ListGroup>
+        <TransitionGroup className="task-list">
+          {tasks.map(({ _id, title }) => (
+            <CSSTransition key={_id} timeout={500} classNames={"fade"}>
+              <ListGroupItem>
+                {title}
+                <Button
+                  className={"remove-btn"}
+                  color={"danger"}
+                  size={"sm"}
+                  onClick={this.handleDelete(_id)}
+                >
+                  Remove
+                </Button>
+              </ListGroupItem>
+            </CSSTransition>
+          ))}
+        </TransitionGroup>
+      </ListGroup>
     );
   }
 }
