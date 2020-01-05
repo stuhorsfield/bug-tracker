@@ -25,7 +25,7 @@ class TaskList extends Component {
 
   render() {
     const { tasks } = this.props.task;
-
+    console.log(tasks);
     return (
       <ListGroup>
         <TransitionGroup className="task-list">

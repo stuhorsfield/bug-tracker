@@ -9,11 +9,13 @@ export const getTasks = () => dispatch => {
   });
 };
 
-export const deleteTask = id => {
-  return {
-    type: DELETE_TASK,
-    payload: id
-  };
+export const deleteTask = id => dispatch => {
+  axios.delete(`/api/tasks/${id}`).then(res => {
+    dispatch({
+      type: DELETE_TASK,
+      payload: id
+    });
+  });
 };
 
 export const addTask = task => dispatch => {
