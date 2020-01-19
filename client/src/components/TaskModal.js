@@ -16,7 +16,8 @@ import { addTask } from "../actions/taskActions";
 class TaskModal extends Component {
   state = {
     modal: false,
-    title: ""
+    title: "",
+    description: ""
   };
 
   toggle = () => {
@@ -30,7 +31,8 @@ class TaskModal extends Component {
     const { addTask } = this.props;
 
     const newTask = {
-      title: this.state.title
+      title: this.state.title,
+      description: this.state.description
     };
 
     addTask(newTask);
@@ -61,6 +63,16 @@ class TaskModal extends Component {
                   type={"text"}
                   id={"task"}
                   placeholder={"Name the task"}
+                  onChange={this.onInputChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for={"task"}>Description</Label>
+                <Input
+                  name={"description"}
+                  type={"textarea"}
+                  id={"description"}
+                  placeholder={"Describe the task"}
                   onChange={this.onInputChange}
                 />
               </FormGroup>

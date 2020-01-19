@@ -17,22 +17,16 @@ class TaskList extends Component {
     deleteTask(id);
   };
 
-  handleAddTask = title => {
-    const { addTask } = this.props;
-
-    addTask(title);
-  };
-
   render() {
     const { tasks } = this.props.task;
     console.log(tasks);
     return (
       <ListGroup>
         <TransitionGroup className="task-list">
-          {tasks.map(({ _id, title }) => (
+          {tasks.map(({ _id, title, description }) => (
             <CSSTransition key={_id} timeout={500} classNames={"fade"}>
               <ListGroupItem>
-                {title}
+                <h5>{title}</h5>
                 <Button
                   className={"remove-btn"}
                   color={"danger"}
@@ -41,6 +35,9 @@ class TaskList extends Component {
                 >
                   Remove
                 </Button>
+                <div className="task-description">
+                  <h6>{description}</h6>
+                </div>
               </ListGroupItem>
             </CSSTransition>
           ))}
