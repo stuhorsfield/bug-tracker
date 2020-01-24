@@ -17,9 +17,12 @@ router.get("/", (req, res) => {
 // @desc    Create a new Task
 // @access  Public
 router.post("/", (req, res) => {
+  const dueDate = new Date(req.body.dateDue);
+
   const newTask = new Task({
     title: req.body.title,
-    description: req.body.description
+    description: req.body.description,
+    dateDue: dueDate.toISOString()
   });
 
   newTask

@@ -23,7 +23,7 @@ class TaskList extends Component {
     return (
       <ListGroup>
         <TransitionGroup className="task-list">
-          {tasks.map(({ _id, title, description }) => (
+          {tasks.map(({ _id, title, description, dateDue }) => (
             <CSSTransition key={_id} timeout={500} classNames={"fade"}>
               <ListGroupItem>
                 <h5>{title}</h5>
@@ -37,6 +37,9 @@ class TaskList extends Component {
                 </Button>
                 <div className="task-description">
                   <h6>{description}</h6>
+                </div>
+                <div className="task-description">
+                  <h6>Due: {dateDue}</h6>
                 </div>
               </ListGroupItem>
             </CSSTransition>

@@ -19,10 +19,16 @@ export const deleteTask = id => dispatch => {
 };
 
 export const addTask = task => dispatch => {
+  // const dueDate = new Date(task.dateDue);
+  // console.log(task);
+  //
+  // console.log(dueDate);
   axios.post("/api/tasks", task).then(res => {
+    console.log(res);
+
     dispatch({
       type: ADD_TASK,
-      payload: task
+      payload: res.data
     });
   });
 };

@@ -17,7 +17,8 @@ class TaskModal extends Component {
   state = {
     modal: false,
     title: "",
-    description: ""
+    description: "",
+    dateDue: ""
   };
 
   toggle = () => {
@@ -32,7 +33,8 @@ class TaskModal extends Component {
 
     const newTask = {
       title: this.state.title,
-      description: this.state.description
+      description: this.state.description,
+      dateDue: this.state.dateDue || Date.now()
     };
 
     addTask(newTask);
@@ -67,12 +69,22 @@ class TaskModal extends Component {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for={"task"}>Description</Label>
+                <Label for={"description"}>Description</Label>
                 <Input
                   name={"description"}
                   type={"textarea"}
                   id={"description"}
                   placeholder={"Describe the task"}
+                  onChange={this.onInputChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for={"dateDue"}>Due date</Label>
+                <Input
+                  name={"dateDue"}
+                  type={"date"}
+                  id={"dateDue"}
+                  placeholder={""}
                   onChange={this.onInputChange}
                 />
               </FormGroup>
@@ -86,6 +98,7 @@ class TaskModal extends Component {
                 </Button>
               </FormGroup>
             </Form>
+            <h6>Duedate: {Date.parse(this.state.dateDue)}</h6>
           </ModalBody>
         </Modal>
       </div>
